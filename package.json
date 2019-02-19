@@ -40,11 +40,13 @@
   },
   "husky": {
     "hooks": {
-       "pre-commit": "export CI=true && yarn build && lint-staged && yarn test",
-       "pre-push": "export CI=true && yarn build && lint-staged && yarn test"
+      "pre-commit": "export CI=true && npm run build && lint-staged && npm run test",
+      "pre-push": "export CI=true && npm run build && lint-staged && npm run test"
     }
-   },
-   "lint-staged": {
-     "*.{ts,tsx}": ["tslint -c tslint.json"]
-   }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "tslint -c tslint.json"
+    ]
+  }
 }
