@@ -1,18 +1,33 @@
 import React, { PureComponent } from 'react';
 import { QueryResult } from 'react-apollo';
-import { HelloData } from '../Hello';
+import { HelloData, Mutations } from '../Hello';
 
-class HelloView extends PureComponent<QueryResult<HelloData>> {
+interface HelloViewProps extends Mutations, QueryResult<HelloData> {}
+
+class HelloView extends PureComponent<HelloViewProps> {
   public render() {
-    const { error, loading, data } = this.props;
+    const { counterDecrement, counterIncrement, error, loading, data } = this.props;
     if (loading) {
       return <div>fetching</div>;
     }
     if (error || data === undefined) {
       return <div>errored</div>;
     }
-    const { hello } = data;
-    return <div>hello {hello}</div>;
+    const { counter, hello } = data;
+    return (
+      <div>
+        <div>hello {hello}</div>
+        <div>{counter.toString()}</div>
+        <div>
+          <button type="button" onClick={counterDecrement}>
+            -
+          </button>
+          <button type="button" onClick={counterIncrement}>
+            +
+          </button>
+        </div>
+      </div>
+    );
   }
 }
 
