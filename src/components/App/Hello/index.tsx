@@ -45,9 +45,11 @@ const Hello = () => (
       <Mutation mutation={COUNTER_INCREMENT}>
         {(counterIncrement: CounterIncrement) => (
           <HelloQuery query={GET_HELLO}>
-            {({ ...helloQueryProps }: QueryResult<HelloData>) => (
+            {({ data, error, loading }: QueryResult<HelloData>) => (
               <HelloView
-                {...helloQueryProps}
+                data={data}
+                error={error !== undefined}
+                loading={loading}
                 counterDecrement={counterDecrement}
                 counterIncrement={counterIncrement}
               />

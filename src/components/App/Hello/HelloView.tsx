@@ -1,8 +1,11 @@
 import React, { PureComponent } from 'react';
-import { QueryResult } from 'react-apollo';
 import { HelloData, Mutations } from '../Hello';
 
-interface HelloViewProps extends Mutations, QueryResult<HelloData> {}
+interface HelloViewProps extends Mutations {
+  data?: HelloData;
+  error: boolean;
+  loading: boolean;
+}
 
 class HelloView extends PureComponent<HelloViewProps> {
   public render() {
