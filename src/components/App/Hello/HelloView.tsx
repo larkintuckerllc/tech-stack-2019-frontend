@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
-import { HelloData, Mutations } from '../Hello';
+import { HelloData } from '../Hello';
 
-interface Props extends Mutations {
+interface Props {
+  counterDecrement: () => void;
+  counterIncrement: () => void;
   data?: HelloData;
   error: boolean;
   loading: boolean;

@@ -24,7 +24,6 @@ export default {
         counter: nextCounter,
       };
       cache.writeData({ data: nextData });
-      return nextCounter;
     },
     counterIncrement: (_: any, params: any, { cache }: { cache: InMemoryCache }) => {
       const data = cache.readQuery<CounterData>({ query });
@@ -37,7 +36,6 @@ export default {
         counter: nextCounter,
       };
       cache.writeData({ data: nextData });
-      return nextCounter;
     },
   },
 };

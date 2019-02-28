@@ -4,15 +4,6 @@ import React from 'react';
 import { Mutation, Query, QueryResult } from 'react-apollo';
 import HelloView from './HelloView';
 
-type CounterDecrement = () => {};
-
-type CounterIncrement = () => {};
-
-export interface Mutations {
-  counterDecrement: CounterDecrement;
-  counterIncrement: CounterIncrement;
-}
-
 export interface HelloData {
   counter: number;
   hello: string;
@@ -41,9 +32,9 @@ const GET_HELLO = gql`
 
 const Hello = () => (
   <Mutation mutation={COUNTER_DECREMENT}>
-    {(counterDecrement: CounterDecrement) => (
+    {counterDecrement => (
       <Mutation mutation={COUNTER_INCREMENT}>
-        {(counterIncrement: CounterIncrement) => (
+        {counterIncrement => (
           <HelloQuery query={GET_HELLO}>
             {({ data, error, loading }: QueryResult<HelloData>) => (
               <HelloView
