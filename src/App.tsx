@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Authenticate from './components/Authenticate';
 import Hello from './components/Hello';
 import logo from './logo.svg';
 
@@ -21,6 +22,7 @@ class App extends Component {
             Learn React
           </a>
           <Hello />
+          <Authenticate />
         </header>
       </div>
     );

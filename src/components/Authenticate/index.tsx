@@ -8,8 +8,8 @@ interface State {
 }
 
 const auth0 = new auth0JS.WebAuth({
-  audience: 'http://localhost:3000',
-  clientID: 'PMIu1SF491eC4af1J2lYR2deZdEL8E8h',
+  audience: 'http://your-api-endpoint',
+  clientID: 'PLoyappMGSqnhT6dKMPYmjpW3EpOSwiw',
   domain: 'larkintuckerllc.auth0.com',
   redirectUri: 'http://localhost:3001',
   responseType: 'token id_token',
@@ -26,7 +26,6 @@ export default class Authenticated extends PureComponent<{}, State> {
   public componentDidMount() {
     const hash = window.location.hash;
     if (hash === '') {
-      auth0.authorize();
       return;
     }
     auth0.parseHash(this.handleParseHash);
@@ -38,12 +37,16 @@ export default class Authenticated extends PureComponent<{}, State> {
       return <div>Error</div>;
     }
     if (!authenticated || accessToken === null) {
-      return null;
+      return <button onClick={this.handleLoginClick}>Login</button>;
     }
-    return <div>LOGGED IN</div>;
+    return <button onClick={this.handleLogoutClick}>Logout</button>;
   }
 
-  private handleClick = () => {
+  private handleLoginClick = () => {
+    auth0.authorize();
+  };
+
+  private handleLogoutClick = () => {
     auth0.logout({
       returnTo: 'http://localhost:3001',
     });
