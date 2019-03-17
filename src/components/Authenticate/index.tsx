@@ -1,5 +1,6 @@
 import auth0JS, { Auth0DecodedHash, Auth0ParseHashError, Auth0UserProfile } from 'auth0-js';
 import React, { PureComponent } from 'react';
+import AuthenticateAuth from './AuthenticateAuth';
 
 interface State {
   authenticated: boolean;
@@ -39,7 +40,14 @@ export default class Authenticated extends PureComponent<{}, State> {
     if (!authenticated || accessToken === null) {
       return <button onClick={this.handleLoginClick}>Login</button>;
     }
-    return <button onClick={this.handleLogoutClick}>Logout</button>;
+    return (
+      <div>
+        <div>
+          <button onClick={this.handleLogoutClick}>Logout</button>
+        </div>
+        <AuthenticateAuth accessToken={accessToken} />
+      </div>
+    );
   }
 
   private handleLoginClick = () => {
